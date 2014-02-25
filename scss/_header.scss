@@ -1,0 +1,38 @@
+header {
+    @include span-columns(12);
+    position: fixed;
+    top: 0;
+    background-color: lightgrey;
+    border-bottom: 2px solid black;
+
+    ul {
+        list-style-type: none;
+        margin-bottom: 0;
+        li {
+            margin: 10px 0;
+        }
+    }
+
+    .stats {
+        @include span-columns(6 of 12);
+
+        img {
+            float: left;
+        }
+        ul {
+            margin-left: 100px;
+            span {
+                display: inline-block;
+                width: 50px;
+                text-align: right;
+                margin-right: 20px;
+            }
+        }
+    }
+    nav {
+        @include span-columns(6 of 12);
+        @include omega();
+        text-align: right;
+        padding-right: 20px;
+    }
+}

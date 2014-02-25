@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="characterApp">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>D&D4e Character Sheet</title>
+    <meta name="author" content="William Mayor">
+    <meta name="keywords" content="D&D, DnD, Dungeons and Dragons, 4e, 4th edition, character sheet">
+    <meta name="description" content="An online D&D4e character sheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="main.min.css" type="text/css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js"></script>
+    <script type="text/javascript" src="js/ngStorage.min.js"></script>
+    <script type="text/javascript" src="js/controllers.js"></script>
+</head>
+<body ng-controller="CharacterCtrl">
+    <header>
+        <div class="stats">
+            <img src="http://placehold.it/100x150" alt="Character portrait" />
+            <ul>
+                <li><span>Name:</span><input type="text" ng-model="$storage.name" /></li>
+                <li><span>XP:</span><input type="number" ng-model="$storage.xp" ng-change="update()" /> (level {{ lvl }})</li>
+                <li><span>HP:</span><input type="number" ng-model="$storage.hp" ng-change="update()" /></li>
+                <li><span>Gold:</span><input type="text" ng-model="$storage.gold" /></li>
+            </ul>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#play">play</a></li>
+                <li><a href="#details">details</a></li>
+                <li><a href="#bio">bio</a></li>
+                <li><a href="#stats">stats</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="play">
+            <div class="roll">
+                <h2>Roll</h2>
+                <ul>
+                    <li ng-repeat="skill in $storage.skills" ng-click="roll(skill)">
+                        {{ skill.name }}: {{ skill.last_roll }}
+                    </li>
+                </ul>
+            </div>
+            <div class="defences">
+                <h2>Defences</h2>
+                <ul>
+                    <li>Armor Class: {{ ac }}</li>
+                    <li>Fortitude: {{ fort }}</li>
+                    <li>Reflex: {{ ref }}</li>
+                    <li>Will: {{ will }}</li>
+                </ul>
+            </div>
+            <div class="buffs">
+                <h2>Buffs/Debuffs</h2>
+                <input type="text" ng-model="$storage.buffs" ng-change="update()" />
+            </div>
+        </section>
+        <section id="details">
+            <ul>
+                <li><span>Class:</span><input type="text" ng-model="$storage.class_" /></li>
+                <li><span>Paragon Path:</span><input type="text" ng-model="$storage.paragon_path" ng-disabled="!is_paragon" /></li>
+                <li><span>Epic Destiny:</span><input type="text" ng-model="$storage.epic_destiny" ng-disabled="!is_epic" /></li>
+                <li><span>Race:</span><input type="text" ng-model="$storage.race" /></li>
+                <li><span>Size:</span><input type="text" ng-model="$storage.size" /></li>
+                <li><span>Age:</span><input type="number" ng-model="$storage.age" /></li>
+                <li><span>Gender:</span><input type="text" ng-model="$storage.gender" /></li>
+                <li><span>Height:</span><input type="text" ng-model="$storage.height" /></li>
+                <li><span>Weight:</span><input type="text" ng-model="$storage.weight" /></li>
+                <li><span>Alignment:</span><input type="text" ng-model="$storage.alignment" /></li>
+                <li><span>Deity:</span><input type="text" ng-model="$storage.deity" /></li>
+                <li><span>Adventuring Company:</span><input type="text" ng-model="$storage.adventuring_company" /></li>
+                <li><span>Other Affiliations:</span><input type="text" ng-model="$storage.other_affiliation" /></li>
+            </ul>
+            <ul>
+                <li ng-repeat="ability in $storage.abilities">
+                    {{ ability.name }}: {{ ability.base }}
+                </li>
+            </ul>
+        </section>
+        <section id="bio">
+
+        </section>
+        <section id="stats">
+
+        </section>
+    </main>
+    <footer>
+
+    </footer>
+</body>
+</html>

@@ -1,0 +1,10 @@
+#play {
+    @include span-columns(12);
+    margin-top: 152px;
+
+    .roll {
+        li {
+            cursor: pointer;
+        }
+    }
+}

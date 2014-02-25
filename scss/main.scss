@@ -1,0 +1,13 @@
+$max-width: 100%;
+
+@import "bourbon/bourbon";
+@import "neat/neat";
+
+body {
+    @include outer-container();
+    font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-weight: 300;
+}
+
+@import "header";
+@import "play";

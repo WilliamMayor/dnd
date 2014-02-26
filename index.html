@@ -71,7 +71,7 @@
                     <h3>Abilities</h3>
                     <ul>
                         <li ng-repeat="ability in $storage.abilities" ng-click="roll(ability)">
-                            <label><i class="fa fa-refresh fa-rotate-{{ ability.rotate }}"></i> {{ ability.name }}:</label> {{ ability.last_roll }}
+                            <label><i class="fa fa-refresh fa-rotate-{{ ability.rotate }}"></i> {{ ability.id }}:</label> {{ ability.last_roll }}
                         </li>
                     </ul>
                 </div>
@@ -102,51 +102,57 @@
         </section>
         <section id="details">
             <h2>Details</h2>
-            <ul class="static">
-                <li><h3>Static</h3></li>
-                <li><span>Class:</span><input type="text" ng-model="$storage.class_" /></li>
-                <li><span>Paragon Path:</span><input type="text" ng-model="$storage.paragon_path" ng-disabled="!is_paragon" /></li>
-                <li><span>Epic Destiny:</span><input type="text" ng-model="$storage.epic_destiny" ng-disabled="!is_epic" /></li>
-                <li><span>Race:</span><input type="text" ng-model="$storage.race" /></li>
-                <li><span>Size:</span><input type="text" ng-model="$storage.size" /></li>
-                <li><span>Age:</span><input type="number" ng-model="$storage.age" /></li>
-                <li><span>Gender:</span><input type="text" ng-model="$storage.gender" /></li>
-                <li><span>Height:</span><input type="text" ng-model="$storage.height" /></li>
-                <li><span>Weight:</span><input type="text" ng-model="$storage.weight" /></li>
-                <li><span>Alignment:</span><input type="text" ng-model="$storage.alignment" /></li>
-                <li><span>Deity:</span><input type="text" ng-model="$storage.deity" /></li>
-                <li><span>Adventuring Company:</span><input type="text" ng-model="$storage.adventuring_company" /></li>
-                <li><span>Other Affiliations:</span><input type="text" ng-model="$storage.other_affiliation" /></li>
-            </ul>
-            <ul class="misc">
-                <li><h3>Misc</h3></li>
-                <li><span>Speed:</span> <input type="text" ng-model="$storage.other.SPD.value" ng-change="update()" /></li>
-                <li><span>Max HP:</span> <input type="text" ng-model="$storage.other.MHP.value" ng-change="update()" /></li>
-                <li><span>Surges per Day:</span> <input type="text" ng-model="$storage.other.SUR_PD.value" ng-change="update()" /></li>
-                <li><span>Surge Amount:</span> <input type="text" ng-model="$storage.other.SUR_A.value" ng-change="update()" /></li>
-            </ul>
-            <ul class="buffs">
-                <li><h3>Buffs</h3></li>
-                <li class="buff" ng-repeat="buff in $storage.buffs">
-                    <input type="text" ng-model="buff.value" />
-                </li>
-                <li><a ng-click="add_buff()">add</a></li>
-            </ul>
-            <ul class="powers">
-                <li><h3>Powers</h3></li>
-                <li class="power" ng-repeat="power in $storage.powers">
-                    Name: <input type="text" ng-model="power.name" />
-                    Frequency: <input type="text" ng-model="power.frequency" />
-                    Description: <input type="text" ng-model="power.description" />
-                    <ul>
-                        <li ng-repeat="r in power.rolls">
-                            <input type="text" ng-model="r.name" /><input type="text" ng-model="r.roll" />
-                        </li>
-                        <li><a ng-click="add_roll(power.rolls)">add</a></li>
-                    </ul>
-                </li>
-                <li><a ng-click="add_power()">add</a></li>
-            </ul>
+            <div class="single">
+                <ul class="static">
+                    <li><h3>Static</h3></li>
+                    <li><span>Class:</span><input type="text" ng-model="$storage.class_" /></li>
+                    <li><span>Paragon Path:</span><input type="text" ng-model="$storage.paragon_path" ng-disabled="!is_paragon" /></li>
+                    <li><span>Epic Destiny:</span><input type="text" ng-model="$storage.epic_destiny" ng-disabled="!is_epic" /></li>
+                    <li><span>Race:</span><input type="text" ng-model="$storage.race" /></li>
+                    <li><span>Size:</span><input type="text" ng-model="$storage.size" /></li>
+                    <li><span>Age:</span><input type="number" ng-model="$storage.age" /></li>
+                    <li><span>Gender:</span><input type="text" ng-model="$storage.gender" /></li>
+                    <li><span>Height:</span><input type="text" ng-model="$storage.height" /></li>
+                    <li><span>Weight:</span><input type="text" ng-model="$storage.weight" /></li>
+                    <li><span>Alignment:</span><input type="text" ng-model="$storage.alignment" /></li>
+                    <li><span>Deity:</span><input type="text" ng-model="$storage.deity" /></li>
+                    <li><span>Adventuring Company:</span><input type="text" ng-model="$storage.adventuring_company" /></li>
+                    <li><span>Other Affiliations:</span><input type="text" ng-model="$storage.other_affiliation" /></li>
+                </ul>
+                <ul class="misc">
+                    <li><h3>Misc</h3></li>
+                    <li><span>Speed:</span> <input type="text" ng-model="$storage.other.SPD.value" ng-change="update()" /></li>
+                    <li><span>Max HP:</span> <input type="text" ng-model="$storage.other.MHP.value" ng-change="update()" /></li>
+                    <li><span>Surges per Day:</span> <input type="text" ng-model="$storage.other.SUR_PD.value" ng-change="update()" /></li>
+                    <li><span>Surge Amount:</span> <input type="text" ng-model="$storage.other.SUR_A.value" ng-change="update()" /></li>
+                </ul>
+            </div>
+            <div class="multiple">
+                <ul class="buffs">
+                    <li><h3>Buffs</h3></li>
+                    <li class="buff" ng-repeat="buff in $storage.buffs">
+                        <input type="text" ng-model="buff.value" />
+                    </li>
+                    <li><a ng-click="add_buff()">add</a></li>
+                </ul>
+                <ul class="powers">
+                    <li><h3>Powers</h3></li>
+                    <li class="power" ng-repeat="power in $storage.powers">
+                        <ul>
+                            <li><span>Name:</span> <input type="text" ng-model="power.name" /></li>
+                            <li><span>Frequency:</span> <input type="text" ng-model="power.frequency" /></li>
+                            <li><span>Description:</span> <textarea ng-model="power.description"></textarea></li>
+                            <li><span>Rolls:</span> <ul>
+                                <li ng-repeat="r in power.rolls">
+                                    <input type="text" ng-model="r.name" /><input type="text" ng-model="r.roll" />
+                                </li>
+                                <li><a ng-click="add_roll(power.rolls)">add</a></li>
+                            </ul></li>
+                        </ul>
+                    </li>
+                    <li><a ng-click="add_power()">add</a></li>
+                </ul>
+            </div>
         </section>
     </main>
     <footer>

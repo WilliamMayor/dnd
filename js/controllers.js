@@ -70,112 +70,112 @@ characterApp.controller('CharacterCtrl', function ($scope, $localStorage) {
             }
         }
         $localStorage.skills = $localStorage.skills || {
-            Initiative: {
-                id: 'Initiative',
+            INITIATIVE: {
+                id: 'INITIATIVE',
                 last_roll: 0,
-                roll: '1d20 + 0.5*LVL + 1*DEXm + 1*Initiative',
+                roll: '1d20 + 0.5*LVL + 1*DEXm + 1*INITIATIVE',
                 rotate: 0
             },
-            Acrobatics: {
-                id: 'Acrobatics',
+            ACROBATICS: {
+                id: 'ACROBATICS',
                 last_roll: 0,
-                roll: '1d20 + 0.5*LVL + 1*DEXm + 1*Acrobatics',
+                roll: '1d20 + 0.5*LVL + 1*DEXm + 1*ACROBATICS',
                 rotate: 0
             },
-            Arcana: {
-                id: 'Arcana',
+            ARCANA: {
+                id: 'ARCANA',
                 last_roll: 0,
-                roll: '1d20 + 0.5*LVL + 1*INTm + 1*Arcana',
+                roll: '1d20 + 0.5*LVL + 1*INTm + 1*ARCANA',
                 rotate: 0
             },
-            Athletics: {
-                id: 'Athletics',
+            ATHLETICS: {
+                id: 'ATHLETICS',
                 last_roll: 0,
-                roll: '1d20 + 0.5*LVL + 1*STRm + 1*Athletics',
+                roll: '1d20 + 0.5*LVL + 1*STRm + 1*ATHLETICS',
                 rotate: 0
             },
-            Bluff: {
-                id: 'Bluff',
+            BLUFF: {
+                id: 'BLUFF',
                 last_roll: 0,
-                roll: '1d20 + 0.5*LVL + 1*CHAm + 1*Bluff',
+                roll: '1d20 + 0.5*LVL + 1*CHAm + 1*BLUFF',
                 rotate: 0
             },
-            Diplomacy: {
-                id: 'Diplomacy',
+            DIPLOMACY: {
+                id: 'DIPLOMACY',
                 last_roll: 0,
-                roll: '1d20 + 0.5*LVL + 1*CHAm + 1*Diplomacy',
+                roll: '1d20 + 0.5*LVL + 1*CHAm + 1*DIPLOMACY',
                 rotate: 0
             },
-            Dungeoneering: {
-                id: 'Dungeoneering',
+            DUNGEONEERING: {
+                id: 'DUNGEONEERING',
                 last_roll: 0,
-                roll: '1d20 + 0.5*LVL + 1*WISm + 1*Dungeoneering',
+                roll: '1d20 + 0.5*LVL + 1*WISm + 1*DUNGEONEERING',
                 rotate: 0
             },
-            Endurance: {
-                id: 'Endurance ',
+            ENDURANCE: {
+                id: 'ENDURANCE',
                 last_roll: 0,
-                roll: '1d20 + 0.5*LVL + 1*CONm + 1*Endurance',
+                roll: '1d20 + 0.5*LVL + 1*CONm + 1*ENDURANCE',
                 rotate: 0
             },
-            Heal: {
-                id: 'Heal ',
+            HEAL: {
+                id: 'HEAL',
                 last_roll: 0,
-                roll: '1d20 + 0.5*LVL + 1*WISm + 1*Heal',
+                roll: '1d20 + 0.5*LVL + 1*WISm + 1*HEAL',
                 rotate: 0
             },
-            History: {
-                id: 'History ',
+            HISTORY: {
+                id: 'HISTORY',
                 last_roll: 0,
-                roll: '1d20 + 0.5*LVL + 1*INTm + 1*History',
+                roll: '1d20 + 0.5*LVL + 1*INTm + 1*HISTORY',
                 rotate: 0
             },
-            Insight: {
-                id: 'Insight ',
+            INSIGHT: {
+                id: 'INSIGHT',
                 last_roll: 0,
-                roll: '1d20 + 0.5*LVL + 1*WISm + 1*Insight',
+                roll: '1d20 + 0.5*LVL + 1*WISm + 1*INSIGHT',
                 rotate: 0
             },
-            Intimidate: {
-                id: 'Intimidate ',
+            INTIMIDATE: {
+                id: 'INTIMIDATE',
                 last_roll: 0,
-                roll: '1d20 + 0.5*LVL + 1*CHAm + 1*Intimidate',
+                roll: '1d20 + 0.5*LVL + 1*CHAm + 1*INTIMIDATE',
                 rotate: 0
             },
-            Nature: {
-                id: 'Nature ',
+            NATURE: {
+                id: 'NATURE',
                 last_roll: 0,
-                roll: '1d20 + 0.5*LVL + 1*WISm + 1*Nature',
+                roll: '1d20 + 0.5*LVL + 1*WISm + 1*NATURE',
                 rotate: 0
             },
-            Perception: {
-                id: 'Perception ',
+            PERCEPTION: {
+                id: 'PERCEPTION',
                 last_roll: 0,
-                roll: '1d20 + 0.5*LVL + 1*WISm + 1*Perception',
+                roll: '1d20 + 0.5*LVL + 1*WISm + 1*PERCEPTION',
                 rotate: 0
             },
-            Religion: {
-                id: 'Religion',
+            RELIGION: {
+                id: 'RELIGION',
                 last_roll: 0,
-                roll: '1d20 + 0.5*LVL + 1*INTm + 1*Religion',
+                roll: '1d20 + 0.5*LVL + 1*INTm + 1*RELIGION',
                 rotate: 0
             },
-            Stealth: {
-                id: 'Stealth ',
+            STEALTH: {
+                id: 'STEALTH',
                 last_roll: 0,
-                roll: '1d20 + 0.5*LVL + 1*DEXm + 1*Stealth',
+                roll: '1d20 + 0.5*LVL + 1*DEXm + 1*STEALTH',
                 rotate: 0
             },
-            Streetwise: {
-                id: 'Streetwise ',
+            STREETWISE: {
+                id: 'STREETWISE',
                 last_roll: 0,
-                roll: '1d20 + 0.5*LVL + 1*CHAm + 1*Streetwise',
+                roll: '1d20 + 0.5*LVL + 1*CHAm + 1*STREETWISE',
                 rotate: 0
             },
-            Thievery: {
-                id: 'Thievery',
+            THIEVERY: {
+                id: 'THIEVERY',
                 last_roll: 0,
-                roll: '1d20 + 0.5*LVL + 1*DEXm + 1*Thievery',
+                roll: '1d20 + 0.5*LVL + 1*DEXm + 1*THIEVERY',
                 rotate: 0
             }
         }
@@ -210,16 +210,25 @@ characterApp.controller('CharacterCtrl', function ($scope, $localStorage) {
             {
                 name: 'Second Wind',
                 frequency: 'encounter',
-                description: 'Spend a healing surge to regain hit points. You gain a +2 bonus to all defenses until the start of your next turn.',
+                description: 'Spend a healing surge to regain hit points. You gain a +2 bonus to all defences until the start of your next turn.',
                 hide_desc: true,
                 rolls: []
+            },
+            {
+                name: 'Dagger Attack',
+                frequency: 'at will',
+                description: 'Attack with your daggers',
+                hide_desc: true,
+                rolls: [
+                    {name: 'attack', last_roll: 0, roll: '1d20 + 0.5*LVL + 1*STRm + 1*ATK', rotate: 0},
+                    {name: 'hit', last_roll: 0, roll: '1d4 + 1*DAGGER', rotate: 0}
+                ]
             }
         ]
     }
 
     $scope.add_roll = function(rolls) {
         rolls.push({name: '', last_roll: 0, roll: '', rotate: 0});
-        console.log(1);
     }
 
     $scope.add_power = function() {
@@ -267,7 +276,6 @@ characterApp.controller('CharacterCtrl', function ($scope, $localStorage) {
         if (ability_mod) {
             total = Math.floor((total - 10) / 2);
         }
-        console.log('score', name, total);
         return total;
     }
 

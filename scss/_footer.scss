@@ -1,0 +1,4 @@
+footer {
+    @include span_columns(10);
+    @include shift(1);
+}

@@ -8,6 +8,7 @@
     <meta name="keywords" content="D&D, DnD, Dungeons and Dragons, 4e, 4th edition, character sheet">
     <meta name="description" content="An online D&D4e character sheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="main.min.css" type="text/css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js"></script>
     <script type="text/javascript" src="js/ngStorage.min.js"></script>
@@ -16,10 +17,10 @@
 <body ng-controller="CharacterCtrl">
     <header>
         <div class="stats">
-            <img src="http://placehold.it/100x150" alt="Character portrait" />
+            <div class="portrait"><img src="http://placehold.it/100x150" alt="Character portrait" /></div>
             <ul>
                 <li><span>Name:</span><input type="text" ng-model="$storage.name" /></li>
-                <li><span>XP:</span><input type="number" ng-model="$storage.xp" ng-change="update()" /> (level {{ lvl }})</li>
+                <li><span>XP:</span><input type="number" ng-model="$storage.xp" ng-change="update()" /></li>
                 <li><span>HP:</span><input type="number" ng-model="$storage.hp" ng-change="update()" /></li>
                 <li><span>Gold:</span><input type="text" ng-model="$storage.gold" /></li>
             </ul>
@@ -28,37 +29,81 @@
             <ul>
                 <li><a href="#play">play</a></li>
                 <li><a href="#details">details</a></li>
-                <li><a href="#bio">bio</a></li>
-                <li><a href="#stats">stats</a></li>
             </ul>
         </nav>
     </header>
     <main>
         <section id="play">
-            <div class="roll">
-                <h2>Roll</h2>
-                <ul>
-                    <li ng-repeat="skill in $storage.skills" ng-click="roll(skill)">
-                        {{ skill.name }}: {{ skill.last_roll }}
-                    </li>
-                </ul>
-            </div>
-            <div class="defences">
-                <h2>Defences</h2>
-                <ul>
-                    <li>Armor Class: {{ ac }}</li>
-                    <li>Fortitude: {{ fort }}</li>
-                    <li>Reflex: {{ ref }}</li>
-                    <li>Will: {{ will }}</li>
-                </ul>
-            </div>
+            <h2>Play</h2>
             <div class="buffs">
-                <h2>Buffs/Debuffs</h2>
-                <input type="text" ng-model="$storage.buffs" ng-change="update()" />
+                <span>Buffs/Debuffs:</span> <input type="text" ng-model="$storage.temp_buffs" ng-change="update()" />
+            </div>
+            <div class="stats">
+                <div class="block info">
+                    <h3>Info</h3>
+                    <ul>
+                        <li><span>Speed:</span> {{ speed }}</li>
+                        <li><span>Level:</span> {{ lvl }}</li>
+                        <li><span>Max HP:</span> {{ max_hp }}</li>
+                        <li><span>Surges per Day:</span> {{ surges_per_day }}</li>
+                        <li><span>Surge Amount:</span> {{ surge_amount }}</li>
+                    </ul>
+                </div>
+                <div class="block conditions">
+                    <h3>Conditions</h3>
+                    <ul>
+                        <li><input type="checkbox" id="take_ten" ng-model="$storage.take_ten" /><label for="take_ten"> Take ten</label></li>
+                        <li><input type="checkbox" id="pc_bloodied" ng-model="$storage.pc_bloodied" /><label for="pc_bloodied"> PC bloodied</label></li>
+                    </ul>
+                </div>
+                <div class="block defences">
+                    <h3>Defences</h3>
+                    <ul>
+                        <li><span>Armor Class:</span> {{ ac }}</li>
+                        <li><span>Fortitude:</span> {{ fort }}</li>
+                        <li><span>Reflex:</span> {{ ref }}</li>
+                        <li><span>Will:</span> {{ will }}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="rolls">
+                <div class="block abilities">
+                    <h3>Abilities</h3>
+                    <ul>
+                        <li ng-repeat="ability in $storage.abilities" ng-click="roll(ability)">
+                            <label><i class="fa fa-refresh fa-rotate-{{ ability.rotate }}"></i> {{ ability.name }}:</label> {{ ability.last_roll }}
+                        </li>
+                    </ul>
+                </div>
+                <div class="block skills">
+                    <h3>Skills</h3>
+                    <ul>
+                        <li ng-repeat="skill in $storage.skills" ng-click="roll(skill)">
+                            <label><i class="fa fa-refresh fa-rotate-{{ skill.rotate }}"></i> {{ skill.id }}: </label>{{ skill.last_roll }}
+                        </li>
+                    </ul>
+                </div>
+                <div class="block powers">
+                    <h3>Powers</h3>
+                    <ul>
+                        <li class="power" ng-repeat="power in $storage.powers">
+                            <h4 ng-click="power.hide_desc = !power.hide_desc">{{ power.name }}</h4>
+                            <p class="frequency">{{ power.frequency }}</p>
+                            <p class="description" ng-hide="power.hide_desc">{{ power.description }}</p>
+                            <ul>
+                                <li ng-repeat="r in power.rolls" ng-click="roll(r)">
+                                <label><i class="fa fa-refresh fa-rotate-{{ r.rotate }}"></i> {{ r.name }}: </label>{{ r.last_roll }}
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </section>
         <section id="details">
-            <ul>
+            <h2>Details</h2>
+            <ul class="static">
+                <li><h3>Static</h3></li>
                 <li><span>Class:</span><input type="text" ng-model="$storage.class_" /></li>
                 <li><span>Paragon Path:</span><input type="text" ng-model="$storage.paragon_path" ng-disabled="!is_paragon" /></li>
                 <li><span>Epic Destiny:</span><input type="text" ng-model="$storage.epic_destiny" ng-disabled="!is_epic" /></li>
@@ -73,21 +118,39 @@
                 <li><span>Adventuring Company:</span><input type="text" ng-model="$storage.adventuring_company" /></li>
                 <li><span>Other Affiliations:</span><input type="text" ng-model="$storage.other_affiliation" /></li>
             </ul>
-            <ul>
-                <li ng-repeat="ability in $storage.abilities">
-                    {{ ability.name }}: {{ ability.base }}
-                </li>
+            <ul class="misc">
+                <li><h3>Misc</h3></li>
+                <li><span>Speed:</span> <input type="text" ng-model="$storage.other.SPD.value" ng-change="update()" /></li>
+                <li><span>Max HP:</span> <input type="text" ng-model="$storage.other.MHP.value" ng-change="update()" /></li>
+                <li><span>Surges per Day:</span> <input type="text" ng-model="$storage.other.SUR_PD.value" ng-change="update()" /></li>
+                <li><span>Surge Amount:</span> <input type="text" ng-model="$storage.other.SUR_A.value" ng-change="update()" /></li>
             </ul>
-        </section>
-        <section id="bio">
-
-        </section>
-        <section id="stats">
-
+            <ul class="buffs">
+                <li><h3>Buffs</h3></li>
+                <li class="buff" ng-repeat="buff in $storage.buffs">
+                    <input type="text" ng-model="buff.value" />
+                </li>
+                <li><a ng-click="add_buff()">add</a></li>
+            </ul>
+            <ul class="powers">
+                <li><h3>Powers</h3></li>
+                <li class="power" ng-repeat="power in $storage.powers">
+                    Name: <input type="text" ng-model="power.name" />
+                    Frequency: <input type="text" ng-model="power.frequency" />
+                    Description: <input type="text" ng-model="power.description" />
+                    <ul>
+                        <li ng-repeat="r in power.rolls">
+                            <input type="text" ng-model="r.name" /><input type="text" ng-model="r.roll" />
+                        </li>
+                        <li><a ng-click="add_roll(power.rolls)">add</a></li>
+                    </ul>
+                </li>
+                <li><a ng-click="add_power()">add</a></li>
+            </ul>
         </section>
     </main>
     <footer>
-
+    <a ng-click="reset()">reset</a>
     </footer>
 </body>
 </html>

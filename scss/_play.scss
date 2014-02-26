@@ -1,10 +1,45 @@
 #play {
-    @include span-columns(12);
-    margin-top: 152px;
-
-    .roll {
-        li {
-            cursor: pointer;
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    label {
+        cursor: pointer;
+    }
+    span, label {
+        display: inline-block;
+        width: 150px;
+        text-align: right;
+    }
+    .stats, .rolls {
+        @include span-columns(12);
+    }
+    .block {
+        @include span-columns(4 of 12);
+    }
+    .defences, .powers {
+        @include omega();
+    }
+    .buffs {
+        @include span-columns(12);
+        @include omega();
+    }
+    .powers {
+        .power {
+            h4 {
+                margin: 0;
+                cursor: pointer;
+            }
+            .frequency {
+                margin: 0;
+                font-size: smaller;
+            }
+            .description {
+                margin: 0;
+            }
+            label {
+                display: inline;
+            }
         }
     }
 }

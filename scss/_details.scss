@@ -1,0 +1,4 @@
+#details {
+    @include span-columns(12);
+    @include omega();
+}

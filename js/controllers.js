@@ -23,6 +23,7 @@ characterApp.controller('CharacterCtrl', function ($scope, $localStorage) {
     $scope.$storage = $localStorage;
 
     function init() {
+        $localStorage.top_dice_rolls = $localStorage.top_dice_rolls || [];
         $localStorage.buffs = $localStorage.buffs || [];
         $localStorage.temp_buffs = $localStorage.temp_buffs || '';
         $localStorage.abilities = $localStorage.abilities || {
@@ -251,6 +252,26 @@ characterApp.controller('CharacterCtrl', function ($scope, $localStorage) {
         $localStorage.$reset();
         init();
         $scope.update();
+    }
+
+    function sum_top_dice_rolls() {
+        var total = 0;
+        for (var i=0; i<$localStorage.top_dice_rolls.length; i++) {
+            total += $localStorage.top_dice_rolls[i].value;
+        }
+        console.log(total);
+        $localStorage.top_dice_sum = total;
+    }
+
+    $scope.top_dice_clear = function() {
+        $localStorage.top_dice_rolls = [];
+        sum_top_dice_rolls();
+    }
+
+    $scope.top_dice_roll = function(size) {
+        var roll = dice_roll(1, size);
+        $localStorage.top_dice_rolls.push({value: roll});
+        sum_top_dice_rolls();
     }
 
     function get_score(name) {

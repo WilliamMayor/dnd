@@ -25,6 +25,24 @@
                 <li><span>Gold:</span><input type="text" ng-model="$storage.gold" /></li>
             </ul>
         </div>
+        <div class="dice">
+            <ul>
+                <li><a ng-click="top_dice_clear()">clear</a></li>
+                <li><a ng-click="top_dice_roll(4)">d4</a></li>
+                <li><a ng-click="top_dice_roll(6)">d6</a></li>
+                <li><a ng-click="top_dice_roll(8)">d8</a></li>
+                <li><a ng-click="top_dice_roll(10)">d10</a></li>
+                <li><a ng-click="top_dice_roll(12)">d12</a></li>
+                <li><a ng-click="top_dice_roll(20)">d20</a></li>
+            </ul>
+            <p>
+                <span ng-repeat="roll in $storage.top_dice_rolls">
+                    {{ roll.value }}
+                    <span ng-if="!$last"> + </span>
+                </span>
+                <span> = {{ $storage.top_dice_sum }}</span>
+            </p>
+        </div>
         <nav>
             <ul>
                 <li><a href="#play">play</a></li>

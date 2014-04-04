@@ -1,0 +1,1 @@
+function DiceViewModel(){var a=this;a.total=ko.observable("")}ko.applyBindings(new DiceViewModel,document.getElementById("dice"));

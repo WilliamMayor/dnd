@@ -8,18 +8,7 @@ body {
     font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
     font-weight: 300;
     margin: 0;
-
-    a {
-        cursor: pointer;
-    }
-    input, textarea {
-        font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
-        font-weight: 300;
-        font-size: larger;
-    }
 }
 
 @import "header";
-@import "play";
-@import "details";
 @import "footer";
